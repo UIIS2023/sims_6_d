@@ -1,0 +1,108 @@
+﻿<Window x:Class="Project.View.TourGuideView.Tutorial"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Project.View.TourGuideView"
+        mc:Ignorable="d"
+        Title="Tutorial" Height="800" Width="1100" WindowStartupLocation="CenterScreen" Loaded="Play_Click" >
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="white"/>
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Margin" Value="5,0,0,0"/>
+        </Style>
+    </Window.Resources>
+    <Grid Background="LightSlateGray">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="80*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0" Background="#323231">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="1" Text="Prijavljivanje i početni meni - 10 sec" TextWrapping="Wrap" Margin="0,10,0,0"/>
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="Kreiranje nove ture - 66 sec" TextWrapping="Wrap"/>
+            <TextBlock Grid.Row="2" Grid.Column="1" Text="Praćenje ture uživo - 295 sec" TextWrapping="Wrap"/>
+            <TextBlock Grid.Row="3" Grid.Column="1" Text="Otkazivanje ture - 450 sec" TextWrapping="Wrap"/>
+            <TextBlock Grid.Row="4" Grid.Column="1" Text="Prikaz recenzija - 510 sec" TextWrapping="Wrap"/>
+            <TextBlock Grid.Row="5" Grid.Column="1" Text="Statistika o turama - 640 sec" TextWrapping="Wrap"/>
+            <TextBlock Grid.Row="6" Grid.Column="1" Text="Kreiranje ture spram zahteva za turu - 750 sec" TextWrapping="Wrap"/>
+            <TextBlock Grid.Row="7" Grid.Column="1" Text="Statistika o zahtevima za ture - 1035 sec" TextWrapping="Wrap"/>
+            <TextBlock Grid.Row="8" Grid.Column="1" Text="Generisanje PDF izvestaja - 1130 sec" TextWrapping="Wrap"/>
+            <TextBlock Grid.Row="9" Grid.Column="1" Text="Prihvatanje dela ture u zahtevu za kompleksnu turu - 1175 sec" TextWrapping="Wrap"/>
+            <TextBlock Grid.Row="10" Grid.Column="1" Text="Otkaz - 1410 sec" TextWrapping="Wrap"/>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="1." Margin="0,10,0,0"/>
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="2."/>
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="3."/>
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="4."/>
+            <TextBlock Grid.Row="4" Grid.Column="0" Text="5."/>
+            <TextBlock Grid.Row="5" Grid.Column="0" Text="6."/>
+            <TextBlock Grid.Row="6" Grid.Column="0" Text="7."/>
+            <TextBlock Grid.Row="7" Grid.Column="0" Text="8."/>
+            <TextBlock Grid.Row="8" Grid.Column="0" Text="9."/>
+            <TextBlock Grid.Row="9" Grid.Column="0" Text="10."/>
+            <TextBlock Grid.Row="10" Grid.Column="0" Text="11."/>
+
+        </Grid>
+        
+        
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="70"/>
+            </Grid.RowDefinitions>
+            
+            <MediaElement x:Name="mediaElement1" Margin="10" Grid.Row="0" LoadedBehavior="Manual" Source="C:\Users\lukar\Desktop\tutorial\tutorial.avi" MediaOpened="mediaElement1_MediaOpened"/>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Slider x:Name="slider_seek" Margin="5,0,5,0" Grid.Row="0" Minimum="0" Maximum="{Binding VideoDuration}" ValueChanged="slider_seek_ValueChanged"
+                        Value="{Binding VideoTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                
+                <Button x:Name="playPause" Width="100" Grid.Row="1" HorizontalAlignment="Left" Margin="10,0,0,10" Click="playPause_Click">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.5*"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Grid.Column="0" Source="{Binding ImageSource, UpdateSourceTrigger=PropertyChanged}" Margin="0,5,10,5"/>
+                        <TextBlock Grid.Column="1" Text="{Binding PlayPause}" VerticalAlignment="Center" Foreground="Black" TextWrapping="Wrap"/>
+                    </Grid>
+                </Button>
+                <Label Grid.Row="1" Content="{Binding VideoTime}" HorizontalAlignment="Right"/>
+
+            </Grid>
+        </Grid>
+
+    </Grid>
+</Window>

@@ -1,0 +1,109 @@
+﻿<Window x:Class="Project.View.Guest1View.MakeMoveRequestView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Project.View.Guest1View"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="MakeMoveRequestView" Height="450" Width="500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock TextDecorations="Underline" FontWeight="DemiBold" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Move Request"/>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <WrapPanel Margin="25,0" VerticalAlignment="Center">
+                <TextBlock  Text="Accommodation Name:"/>
+                <TextBlock Margin="10,0" Text="{Binding Path=SelectedReservation.Accommodation.Name}"/>
+            </WrapPanel>
+
+            <WrapPanel Grid.Row="1" Margin="25,0" VerticalAlignment="Center">
+                <TextBlock Text="Location: "/>
+                <TextBlock Margin="10,0,0,0" Text="{Binding Path=SelectedReservation.Accommodation.Location.City}"/>
+                <TextBlock Text=", "/>
+                <TextBlock Text="{Binding Path=SelectedReservation.Accommodation.Location.Country}"/>
+            </WrapPanel>
+
+            <WrapPanel Margin="25,0" VerticalAlignment="Center" Grid.Row="2">
+                <TextBlock FontWeight="SemiBold" Text="Old start date:"/>
+                <TextBlock FontWeight="SemiBold" Margin="10,0" Text="{Binding Path=SelectedReservation.StartDate,StringFormat=d}"/>
+            </WrapPanel>
+            
+            <WrapPanel Margin="25,0,0,0" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0">
+                <TextBlock Text="Number of guests:"/>
+                <TextBlock Margin="10,0" Text="{Binding Path=SelectedReservation.Guests}"/>
+            </WrapPanel>
+
+            <WrapPanel Margin="25,0,0,0" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1">
+                <TextBlock Text="Number of days:"/>
+                <TextBlock Margin="10,0" Text="{Binding Path=Days}"/>
+            </WrapPanel>
+
+            <WrapPanel Margin="25,0,0,0" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2">
+                <TextBlock FontWeight="SemiBold" Text="Old end date:"/>
+                <TextBlock FontWeight="SemiBold" Margin="10,0" Text="{Binding Path=SelectedReservation.EndDate, StringFormat=d}"/>
+            </WrapPanel>
+
+        </Grid>
+
+        <StackPanel Margin="20,0" Grid.Row="2">
+            <Separator Foreground="Black" Height="2"/>
+        </StackPanel>
+
+        <Grid Grid.Row="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <WrapPanel Margin="28,0,0,0" VerticalAlignment="Center">
+                    <Label  VerticalAlignment="Center" Content="New s_tart date:" Target="{Binding ElementName=dpStart}"/>
+                    <DatePicker Name="dpStart" SelectedDate="{Binding Path=NewStartDate,Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" DisplayDateStart="{x:Static sys:DateTime.Today}" Margin="10,0"/>
+                </WrapPanel>
+
+                <WrapPanel Margin="10,0,0,0" VerticalAlignment="Center" Grid.Column="1">
+                    <Label VerticalAlignment="Center" Content="New _end date:" Target="{Binding ElementName=dpEnd}"/>
+                    <DatePicker x:Name="dpEnd" SelectedDate="{Binding Path=NewEndDate,Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" DisplayDateStart="{x:Static sys:DateTime.Today}" Margin="10,0"/>
+                </WrapPanel>
+                
+
+            </Grid>
+
+            <StackPanel Margin="25,0" Grid.Row="1">
+                <Label Target="{Binding ElementName=tbComment}" Margin="0,0,0,5" FontSize="11" Content="_Why do you want to move this reservation? Please write a comment:"/>
+                <TextBox x:Name="tbComment" Text="{Binding Path=Comment, Mode=OneWayToSource,UpdateSourceTrigger=LostFocus}" Height="69" AcceptsReturn="True" AcceptsTab="True" SpellCheck.IsEnabled="True" TextWrapping="Wrap"/>
+                <Button Height="0" Width="0" IsCancel="True"/>
+            </StackPanel>
+
+            <Button x:Name="btnSendRequest" Click="btnSendRequest_Click" Margin="0,0,0,13" FontSize="13" Content="_Send request" Height="20" Width="90" Grid.Row="2"/>
+
+        </Grid>
+        
+        
+        
+    </Grid>
+</Window>

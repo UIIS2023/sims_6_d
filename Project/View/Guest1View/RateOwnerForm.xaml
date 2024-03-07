@@ -1,0 +1,141 @@
+﻿<Window x:Class="Project.View.Guest1View.RateOwnerForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Project.View.Guest1View"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="RateOwnerForm" Height="500" Width="500">
+    <Window.Resources>
+        <sys:String x:Key="renovationTooltip">
+            Level 1 - It would be nice to renovate some little things, but everything works as it should without it.            
+            Level 2 - Small complaints about accommodation that if removed would make it perfect.&#10;           
+            Level 3 - A few things that really bothered should be renovated.&#10;            
+            Level 4 - There are a lot of bad things and renovation is really necessary.&#10;            
+            Level 5 - The accommodation is in very poor condition and is not worth renting at all unless it is renovation.
+        </sys:String>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="0.9*"/>
+        </Grid.RowDefinitions>
+
+        <WrapPanel VerticalAlignment="Center" Margin="70,0,0,0">
+            <TextBlock TextDecorations="Underline" FontWeight="DemiBold" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Rate Owner and Accommodation"/>
+            <Button Height="0" Width="0" IsCancel="True"/>
+            <Image Margin="30,0,0,0" Stretch="Uniform" Height="25" Source="../../Resources/Images/infoIcon.png"/>
+        </WrapPanel>
+
+        <Grid Margin="0,8,0,0" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Label Target="{Binding ElementName=sliderClean}" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center" Content="_Cleanliness:"/>
+            <Label Target="{Binding ElementName=sliderBehaviour}" Grid.Row="1" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center" Content="_Owner behaviour:"/>
+
+            <WrapPanel VerticalAlignment="Center" Grid.Column="1">
+                <Slider IsSnapToTickEnabled="True" TickFrequency="1" x:Name="sliderClean" Value="{Binding Path=Cleanliness,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Minimum="1" Maximum="5" VerticalAlignment="Center" Width="160"/>
+                <Label x:Name="lblClean" BorderBrush="Black" BorderThickness="1" FontSize="16" Content="{Binding ElementName=sliderClean,Path=Value}" Margin="15,0,0,0"/>
+            </WrapPanel>
+
+            <WrapPanel VerticalAlignment="Center" Grid.Column="1" Grid.Row="1">
+                <Slider IsSnapToTickEnabled="True" TickFrequency="1" x:Name="sliderBehaviour" Value="{Binding Path=OwnerBehaviour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="1" Maximum="5" VerticalAlignment="Center" Width="160"/>
+                <Label x:Name="lblBehaviour" BorderBrush="Black" BorderThickness="1" FontSize="16" Content="{Binding ElementName=sliderBehaviour,Path=Value}" Margin="15,0,0,0"/>
+            </WrapPanel>
+
+        </Grid>
+
+        <StackPanel Margin="35,5" Grid.Row="2">
+            <Label Target="{Binding ElementName=tbComment}" Content="_Write an additional comment:"/>
+            <TextBox x:Name="tbComment" Text="{Binding Path=Comment,Mode=OneWayToSource, UpdateSourceTrigger=LostFocus}" VerticalScrollBarVisibility="Visible" Height="80" AcceptsReturn="True" AcceptsTab="True" SpellCheck.IsEnabled="True" TextWrapping="Wrap"/>
+        </StackPanel>
+
+        <StackPanel Margin="35,5" Grid.Row="3">
+            <WrapPanel>
+                <Label Target="{Binding ElementName=tbImageUrl}" Content="Add _images:"/>
+                <TextBox Foreground="Gray" GotFocus="tbImageUrl_GotFocus" LostFocus="tbImageUrl_LostFocus" Text="Paste image urls here" x:Name="tbImageUrl" VerticalContentAlignment="Center" Width="240" Margin="15,0,0,0"/>
+                <Button x:Name="btnAddImage" Click="btnAddImage_Click" Content="_Add" Margin="10,0,0,0" Width="60"/>
+            </WrapPanel>
+            <ListView ItemsSource="{Binding Path=ImageUrls, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Height="60"/>
+        </StackPanel>
+
+        <Grid Margin="35,0" Grid.Row="4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Label FontSize="12" VerticalAlignment="Center" Target="{Binding ElementName=chbRenovation}" Content="_Does accommodaiton need renovation?"/>
+            <Label Target="{Binding ElementName=sliderRenovation}" x:Name="tbRenovation" Grid.Row="1" FontSize="15" Foreground="Gray" VerticalAlignment="Center" Content="_Renovation emergency level:"/>
+
+            <WrapPanel VerticalAlignment="Center" Grid.Column="1">
+                <CheckBox x:Name="chbRenovation" Unchecked="chbRenovation_Unchecked" Checked="chbRenovation_Checked" IsChecked="False" Margin="20,0" VerticalAlignment="Center" VerticalContentAlignment="Center" Content="Yes" FontSize="14"/>
+                <StackPanel>
+                    <Popup IsOpen="{Binding ElementName=ImagePresenter, Path=IsKeyboardFocusWithin, Mode=OneWay}"
+                         PlacementTarget="{Binding ElementName=ImagePresenter}">
+                        <TextBlock Background="LightYellow" Width="250" Padding="10,10" TextWrapping="Wrap">
+                            <Bold>Level 1</Bold> - It would be nice to renovate some little things, but everything works as it should without it.
+                            <LineBreak/>
+                            <Bold>Level 2</Bold> - Small complaints about accommodation that if removed would make it perfect.
+                            <LineBreak/>
+                            <Bold>Level 3</Bold> - A few things that really bothered should be renovated.
+                            <LineBreak/>
+                            <Bold>Level 4</Bold> - There are a lot of bad things and renovation is really necessary.
+                            <LineBreak/>
+                            <Bold>Level 5</Bold> - The accommodation is in very poor condition and is not worth renting at all unless it is renovation.
+                        </TextBlock>
+                    </Popup>
+                    <ContentControl x:Name="ImagePresenter" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <Image Height="22" x:Name="tabinfoIcon" Source="../../Resources/Images/infoIcon.png"
+                           Stretch="Uniform">
+                            <Image.ToolTip>
+                                <ToolTip Background="LightYellow"
+                                         Foreground="#FF5E5D5D"
+                                         Placement="MousePoint"
+                                         x:Name="tabToolTip">
+                                    <TextBlock Background="LightYellow" Width="250" Padding="10,10" TextWrapping="Wrap">
+                                        <Bold>Level 1</Bold> - It would be nice to renovate some little things, but everything works as it should without it.
+                                        <LineBreak/>
+                                        <Bold>Level 2</Bold> - Small complaints about accommodation that if removed would make it perfect.
+                                        <LineBreak/>
+                                        <Bold>Level 3</Bold> - A few things that really bothered should be renovated.
+                                        <LineBreak/>
+                                        <Bold>Level 4</Bold> - There are a lot of bad things and renovation is really necessary.
+                                        <LineBreak/>
+                                        <Bold>Level 5</Bold> - The accommodation is in very poor condition and is not worth renting at all unless it is renovation.
+                                    </TextBlock>
+                                </ToolTip>
+                            </Image.ToolTip>
+                        </Image>
+                    </ContentControl>
+                </StackPanel>
+            </WrapPanel>
+
+            <WrapPanel Name="wpRenovation" IsEnabled="False" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1">
+                <Slider IsSnapToTickEnabled="True" TickFrequency="1" x:Name="sliderRenovation" Value="{Binding Path=RenovationEmergencyLevel, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Minimum="1" Maximum="5" VerticalAlignment="Center" Width="160"/>
+                <Label x:Name="lblRenovation" BorderBrush="Gray" BorderThickness="1" FontSize="16" Content="{Binding ElementName=sliderRenovation,Path=Value}" Margin="15,0,0,0"/>
+            </WrapPanel>
+
+        </Grid>
+
+        <Button x:Name="btnSendRecension" Click="btnSendRecension_Click" Content="_Send recension" Grid.Row="5" Height="20" Width="90"/>
+
+    </Grid>
+</Window>

@@ -1,0 +1,77 @@
+﻿<Window x:Class="Project.View.TourGuideView.ComplexTourDetails"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Project.View.TourGuideView"
+        mc:Ignorable="d"
+        Title="Complex tour details" Height="700" Width="800"
+        WindowStartupLocation="CenterScreen">
+    
+    <Grid Background="#28365e">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Complex tour parts" Foreground="White" FontSize="25" FontFamily="Century Gothic" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+        <DataGrid Grid.Row="1" Margin="10,5,10,10"
+                  AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single"
+                  ItemsSource="{Binding Parts, UpdateSourceTrigger=PropertyChanged}"
+                  SelectedItem="{Binding SelectedPart, UpdateSourceTrigger=PropertyChanged}"
+                  GridLinesVisibility="None"
+                  IsSynchronizedWithCurrentItem="True"
+                  Background="#506dbb">
+            <DataGrid.Resources>
+                <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Background" Value="#3c528c"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="Height" Value="30"/>
+                </Style>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="Background" Value="#465fa4"/>
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.RowStyle>
+                <Style TargetType="{x:Type DataGridRow}">
+                    <Setter Property="Background" Value="#465fa4"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="FontFamily" Value="Century Gothic"/>
+                    <Setter Property="FontSize" Value="16"/>
+                </Style>
+            </DataGrid.RowStyle>
+
+
+            <DataGrid.InputBindings>
+                <MouseBinding
+                MouseAction="LeftDoubleClick"
+                Command="{Binding OpenPartCommand}"
+                CommandParameter="{Binding Parts/}"/>
+            </DataGrid.InputBindings>
+
+            <DataGrid.RowHeaderStyle>
+                <Style TargetType="{x:Type DataGridRowHeader}">
+                    <Setter Property="Height" Value="30"/>
+                    <Setter Property="Width" Value="0"/>
+                </Style>
+            </DataGrid.RowHeaderStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="City" Width="0.275*" Binding="{Binding Location.City}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Country" Width="0.275*" Binding="{Binding Location.Country}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Language" Width="0.2*" Binding="{Binding Language}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Guest num." Width="0.1*" Binding="{Binding GuestNumber}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Status" Width="0.15*" Binding="{Binding Status}"></DataGridTextColumn>
+
+                
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+        <Label Grid.Row="2" Foreground="White" Content="*Double click on tour part to see deatails or accept request"/>
+
+    </Grid>
+</Window>

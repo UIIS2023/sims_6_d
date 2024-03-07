@@ -1,0 +1,40 @@
+﻿<Window x:Class="Project.View.Guest1View.ReserveAccommodationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:local="clr-namespace:Project.View.Guest1View"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="ReserveView" Height="560" Width="500">
+    <Grid>
+        <Label FontWeight="DemiBold" Content="Number of _days:" Target="{Binding ElementName=tbDays}" HorizontalAlignment="Left" Margin="62,104,0,0" VerticalAlignment="Top"/>
+        <Label FontWeight="DemiBold" Content="S_tarting date:" Target="{Binding ElementName=dpStart}" HorizontalAlignment="Left" Margin="62,160,0,0" VerticalAlignment="Top"/>
+        <Label FontWeight="DemiBold" Content="_End date:" Target="{Binding ElementName=dpEnd}" HorizontalAlignment="Left" Margin="62,205,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbDays" Text="{Binding Days,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Margin="0,108,0,0" VerticalAlignment="Top" Width="120"/>
+        <DatePicker Name="dpStart" DisplayDateStart="{x:Static sys:DateTime.Today}" SelectedDate="{Binding Path=StartDate,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    HorizontalAlignment="Left" Margin="180,160,0,0" VerticalAlignment="Top"/>
+
+        <DatePicker x:Name="dpEnd" DisplayDateStart="{x:Static sys:DateTime.Today}" SelectedDate="{Binding Path=EndDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    HorizontalAlignment="Left" Margin="180,205,0,0" VerticalAlignment="Top"/>
+        <Button Command="{Binding SearchCommand}" Content="_Search" HorizontalAlignment="Left" Margin="389,117,0,0" VerticalAlignment="Top" Height="33" Width="65"/>
+        <TextBlock x:Name="tbNotFound" Foreground="Red" Text="{Binding Path=NotFoundText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Width="auto" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="37,262,0,0"  VerticalAlignment="Top"/>
+        <DataGrid SelectedItem="{Binding Path=SelectedReservation}" IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding Path=FreeReservations}" Margin="52,304,52,91">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Start Date" Binding="{Binding Path=StartDate}" Width="1*"/>
+                <DataGridTextColumn Header="End Date" Binding="{Binding Path=EndDate}" Width="1*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <TextBlock FontWeight="Bold" TextDecorations="Underline" FontSize="20" HorizontalAlignment="Center" Margin="0,10,0,0" Text="Make reservation" VerticalAlignment="Top"/>
+        <Label FontWeight="DemiBold" Content="Number of _guests:" Target="{Binding ElementName=tbGuests}" HorizontalAlignment="Left" Margin="62,61,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbGuests" Text="{Binding Guests, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Margin="0,65,0,0"  VerticalAlignment="Top" Width="120"/>
+        <Button Command="{Binding ReserveCommand}" Content="_Reserve" HorizontalAlignment="Center" Margin="0,458,0,0" VerticalAlignment="Top" Width="80"/>
+        <Separator Background="DarkBlue"  HorizontalAlignment="Center" Margin="0,250,0,0" VerticalAlignment="Top" Height="7" Width="432"/>
+        <Label Foreground="LightCoral" Content="NOTE: Select reservation first"  HorizontalAlignment="Left" Margin="168,483,0,0" VerticalAlignment="Top" Width="192"/>
+        <Button Height="0" Width="0" IsCancel="True" HorizontalAlignment="Left" Margin="64,17,0,0" VerticalAlignment="Top"/>
+
+
+    </Grid>
+</Window>

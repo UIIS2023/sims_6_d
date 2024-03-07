@@ -1,0 +1,385 @@
+﻿<Window x:Class="Project.View.TourGuideView.AddNewTour"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Project.View.TourGuideView"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="AddNewTour" Height="800" Width="1000"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="#506dbb"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="FontFamily" Value="Century Gothic"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Century Gothic"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="ListBox">
+            <Setter Property="Background" Value="#506dbb"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="Century Gothic"/>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="Foreground" Value="black"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Height" Value="25"/>
+        </Style>
+
+        
+    </Window.Resources>
+    <Grid Background="#28365e">
+
+        <DockPanel>
+
+            <Grid DockPanel.Dock="Bottom" Height="40">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="Submit" Content="Submit" Grid.Column="1" Margin="0,10,0,5" Width="300" HorizontalAlignment="Center" Command="{Binding SubmitCommand}">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Button x:Name="Close" Content="Close" Grid.Column="0" Margin="0,10,0,5" Width="300" HorizontalAlignment="Center" Command="{Binding CloseCommand}">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Grid>
+            
+
+
+            <Grid DockPanel.Dock="Left" Width="500">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="75"></RowDefinition>
+                        <RowDefinition Height="230"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition />
+                        <RowDefinition Height="80"/>
+                        <RowDefinition />
+                        <RowDefinition />
+
+
+
+
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+
+                        <Label  Grid.Column="0">Tour name:</Label>
+                        <TextBox x:Name="tourNameTextbox" Grid.Column="1" Text="{Binding Path=NameOfTour, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                 ToolTip="{Binding ErrorCollection[NameOfTour]}">
+                           
+                        </TextBox>
+
+
+
+                    </Grid>
+
+                    <GroupBox BorderBrush="White" BorderThickness="0.5" Grid.Row="1" Margin="5,0,0,0">
+                        
+                        <GroupBox.Header>
+                            <Label Content="Location"/>
+                        </GroupBox.Header>
+
+                        <Grid>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+
+                            </Grid.RowDefinitions>
+
+
+
+
+
+                            <Grid Grid.Row="0">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <WrapPanel Grid.Column="0">
+                                    <Label>Country:</Label>
+
+                                    <ComboBox x:Name="countryComboBox" Width="120" Height="25" VerticalContentAlignment="Center"
+                                              ItemsSource="{Binding Path=Countries, UpdateSourceTrigger=PropertyChanged}" 
+                                              SelectedValue="{Binding Path=SharedViewModel.Country, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                              IsEnabled="{Binding IsEnabled}"
+                                              ToolTip="{Binding ErrorCollection[SharedViewModel.Country]}">
+
+                                    </ComboBox>
+
+                                </WrapPanel>
+                                <WrapPanel Grid.Column="1">
+                                    <Label>City:</Label>
+                                    <ComboBox x:Name="cityComboBox" Width="130" Height="25" VerticalContentAlignment="Center"
+                                              Text="{Binding Path=SharedViewModel.City, UpdateSourceTrigger=PropertyChanged}"
+                                              ItemsSource="{Binding Path=Cities, UpdateSourceTrigger=PropertyChanged}"
+                                              SelectedValue="{Binding Path=SharedViewModel.City, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                              IsEnabled="{Binding IsEnabled}"
+                                              ToolTip="{Binding ErrorCollection[SharedViewModel.City]}"
+                                                ></ComboBox>
+                                </WrapPanel>
+                            </Grid>
+
+
+                        </Grid>
+
+                    </GroupBox>
+
+
+                    <GroupBox Grid.Row="2" BorderBrush="White" BorderThickness="0.5" Margin="5,0,0,0">
+                        <GroupBox.Header>
+                            <Label>Date and time of tour start</Label>
+                        </GroupBox.Header>
+
+                        <Grid>
+
+                            <Grid.RowDefinitions>
+
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition Height="110"></RowDefinition>
+
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.7*"></ColumnDefinition>
+                                <ColumnDefinition Width="1.15*"></ColumnDefinition>
+                                <ColumnDefinition Width="1.15*"></ColumnDefinition>
+
+                            </Grid.ColumnDefinitions>
+
+                                <Label Grid.Row="0" Grid.Column="0">Date:</Label>
+                                <DatePicker x:Name="date" Grid.Row="0" Grid.Column="1" Width="150" Height="30" FontSize="14"
+                                           
+                                            SelectedDate="{Binding Path=StartDate, UpdateSourceTrigger=PropertyChanged}" 
+                                            DisplayDateStart="{x:Static sys:DateTime.Today}"
+                                            
+                                            
+                                            IsEnabled="{Binding IsEnabled}"></DatePicker>
+
+                            
+                                <Label Grid.Row="1" Grid.Column="0" Content="Time(hh:mm)"/>
+                                <TextBox Grid.Row="1" Grid.Column="1" x:Name="time" ToolTip="hh:mm" Width="150" Height="25" 
+                                         Text="{Binding StartTime, UpdateSourceTrigger=PropertyChanged}"
+                                         IsEnabled="{Binding IsEnabled}"></TextBox>
+                            
+                            <Button x:Name="AddDate" Grid.Row="1" Grid.Column="2"  Width="150"
+                                    Content="Add date to list"
+                                    Command="{Binding AddDateCommand}"/>
+
+                            <ListBox x:Name="dateTimeList" Grid.Row="2" Grid.ColumnSpan="3" ItemsSource="{Binding Dates, UpdateSourceTrigger=PropertyChanged, StringFormat=g, ConverterCulture=fr-FR,ValidatesOnDataErrors=True, NotifyOnValidationError=True}"
+                                     ToolTip="{Binding ErrorCollection[Dates]}">
+
+                            </ListBox>
+
+
+
+
+
+                        </Grid>
+
+
+                    </GroupBox>
+
+
+
+
+
+
+
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0">Duration (hours):</Label>
+                        <TextBox Grid.Column="1"  Text="{Binding Path=Duration, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                    </Grid>
+
+                    <Grid Grid.Row="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0">Language:</Label>
+                        <ComboBox x:Name="languageComboBox" Grid.Column="1" Height="25"
+                                  
+                                  SelectedItem="{Binding Path=SharedViewModel.Language, UpdateSourceTrigger=PropertyChanged}"
+                                  ItemsSource="{Binding Languages}"
+                                  SelectedValue="{Binding SharedViewModel.Language, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                  IsEnabled="{Binding IsEnabled}">
+                        </ComboBox>
+                        
+                    </Grid>
+
+                    <Grid Grid.Row="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0">Max number of guests:</Label>
+                        <TextBox Grid.Column="1" 
+                                 Text="{Binding Path=SharedViewModel.GuestNumber, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
+                                 IsEnabled="{Binding IsEnabled}"
+                                 ToolTip="{Binding ErrorCollection[SharedViewModel.GuestNumber]}"></TextBox>
+                    </Grid>
+
+
+                    <Button Grid.Row="7" HorizontalAlignment="Center" Width="300" Height="60" Background="#e8e4c9" FontFamily="Verdana"  FontWeight="Bold"
+                            Command="{Binding CreateSuggestionCommand}"
+                            IsEnabled="{Binding IsEnabled}">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </Button.Resources>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.5*"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <Image Grid.Column="0" Source="../../Resources/Images/lightbulb.png" Margin="0,5,10,5"/>
+                            <TextBlock Grid.Column="1" Text="Create tour against popular location or language" 
+                                       VerticalAlignment="Center" FontSize="14"
+                                       TextWrapping="Wrap"/>
+                        </Grid>
+                    </Button>
+
+
+
+                </Grid>
+            </Grid>
+
+
+
+            <!--DESNA STRANA-->
+            <Grid DockPanel.Dock="Right" Width="450">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="290"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="150"></RowDefinition>
+                    <RowDefinition Height="20"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+
+                </Grid.RowDefinitions>
+
+
+                <GroupBox Grid.Row="0" BorderBrush="white" BorderThickness="0.5">
+                    <GroupBox.Header>
+                        <Label>Tour points</Label>
+                    </GroupBox.Header>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition Height="100"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.25*"></ColumnDefinition>
+                            <ColumnDefinition Width="0.75*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+
+                        <Label Grid.Column="0" Grid.Row="0">Start point:</Label>
+                        <TextBox x:Name="startPointTextBox" Grid.Column="1" Grid.Row="0" Text="{Binding Path=StartPoint, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
+                                 ToolTip="{Binding ErrorCollection[StartPoint]}"></TextBox>
+
+
+
+                        <Label Grid.Column="0" Grid.Row="1">End point:</Label>
+                        <TextBox x:Name="endPointTextBox" Grid.Column="1" Grid.Row="1" Text="{Binding Path=EndPoint, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                 ToolTip="{Binding ErrorCollection[EndPoint]}"></TextBox>
+
+
+                        <TextBlock TextWrapping="Wrap" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" FontSize="14" Foreground="White" VerticalAlignment="Bottom">Add more points in the order in which they will be visited (optional):</TextBlock>
+                        <Grid Grid.Row="3" Grid.ColumnSpan="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.65*"/>
+                                <ColumnDefinition Width="0.35*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBox x:Name="pointInput" Grid.Column="0" Text="{Binding Path=AnotherPoint, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                            <Button x:Name="AddPoints" Grid.Column="1" Grid.Row="3" Content="Add tour point" Margin="5,0,0,0" Command="{Binding AddPointCommand}"/>
+                        </Grid>
+
+                        <Label Grid.Row="4" Content="Added points:"/>
+                        <ListBox x:Name="pointsList" Grid.Row="5" Grid.ColumnSpan="2" ItemsSource="{Binding AnotherPoints, UpdateSourceTrigger=PropertyChanged}"></ListBox>
+
+                    </Grid>
+                </GroupBox>
+
+
+
+
+                <Label Grid.Row="1">Description:</Label>
+                <TextBox Grid.Row="2" Width="430" Height="150" TextWrapping="Wrap" VerticalContentAlignment="Top" Text="{Binding Path=Description, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                         ToolTip="{Binding ErrorCollection[Description]}"></TextBox>
+                <Button x:Name="AddPictureButton" Grid.Row="4" Margin="10,0,10,5" Command="{Binding AddPictureCommand}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.5*"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Grid.Column="0" Source="../../Resources/Images/image.png" Margin="0,0,15,0"/>
+                        <TextBlock Grid.Column="1" Text="Add pictures..." Foreground="Black" TextWrapping="Wrap" VerticalAlignment="Center"/>
+                    </Grid>
+                </Button>
+
+                <Label Grid.Row="5" Content="Added pictures:"/>
+                <ListBox x:Name="imageList" Grid.Row="6" Margin="5,0,5,0" ItemsSource="{Binding Images, UpdateSourceTrigger=PropertyChanged}">
+
+
+                </ListBox>
+
+
+            </Grid>
+        </DockPanel>
+
+    </Grid>
+</Window>

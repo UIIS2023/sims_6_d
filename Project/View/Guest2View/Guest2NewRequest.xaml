@@ -1,0 +1,55 @@
+﻿<Window x:Class="Project.View.Guest2NewRequest"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Project.View"
+        mc:Ignorable="d"
+        Title="Guest2NewRequest" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Grid.Row="0" Text="Make a new request" FontSize="30" FontWeight="DemiBold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+        <Grid Grid.Row="1" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.6*"/>
+                <ColumnDefinition Width="1.4*"/>
+                <ColumnDefinition Width="0.6*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Content="Country:" FontSize="20" VerticalAlignment="Center"/>
+            <Label Grid.Row="0" Grid.Column="2" Content="City:" FontSize="20" VerticalAlignment="Center"/>
+            <Label Grid.Row="1" Grid.Column="0" Content="Language" FontSize="20" VerticalAlignment="Center"/>
+            <Label Grid.Row="1" Grid.Column="2" Content="Guest number:" FontSize="20" VerticalAlignment="Center"/>
+            <Label Grid.Row="2" Grid.Column="0" Content="Start date:" FontSize="20" VerticalAlignment="Center"/>
+            <Label Grid.Row="2" Grid.Column="2" Content="End date:" FontSize="20" VerticalAlignment="Center"/>
+            <Label Grid.Row="3" Grid.Column="0" Content="Description:" FontSize="20" VerticalAlignment="Center"/>
+
+            <ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Path=Countries, UpdateSourceTrigger=PropertyChanged}" SelectedValue="{Binding Path=Country}" FontSize="20" Height="40"/>
+            <ComboBox Grid.Row="0" Grid.Column="3" ItemsSource="{Binding Path=Cities,UpdateSourceTrigger=PropertyChanged}" SelectedValue="{Binding Path=City}" FontSize="20" Height="40"/>
+            <ComboBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Path=Languages, UpdateSourceTrigger=PropertyChanged}" SelectedValue="{Binding Path=Language}" FontSize="20" Height="40"/>
+
+            <DatePicker Grid.Row="2" Grid.Column="1" FontSize="20" SelectedDate="{Binding StartDate, UpdateSourceTrigger=PropertyChanged}" DisplayDateStart="{Binding DatePickerDates}" Validation.ErrorTemplate="{x:Null}"/>
+            <DatePicker Grid.Row="2" Grid.Column="3" FontSize="20" SelectedDate="{Binding EndDate, UpdateSourceTrigger=PropertyChanged}" DisplayDateStart="{Binding DatePickerDates}" Validation.ErrorTemplate="{x:Null}"/>
+
+            <TextBox Grid.Row="1" Grid.Column="3" Height="40" Width="100" HorizontalAlignment="Left" Margin="8,0,0,0" Text="{Binding Path=GuestNumber, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Grid.Row="3" Grid.Column="1" TextWrapping="Wrap" VerticalContentAlignment="Top" Text="{Binding Path=Description, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+
+        </Grid>
+
+        <Button Grid.Row="2" Height="40" Width="150" Content="Make a new request" HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding MakeNewRequestCommand}"/>
+
+    </Grid>
+</Window>

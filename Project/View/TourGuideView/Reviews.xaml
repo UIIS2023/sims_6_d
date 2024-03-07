@@ -1,0 +1,96 @@
+﻿<Window x:Class="Project.View.TourGuideView.Reviews"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Project.View.TourGuideView"
+        mc:Ignorable="d"
+        Title="Reviews" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen" Background="#28365e">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.5*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="12*"></RowDefinition>
+            
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontFamily="Century gothic" FontSize="30">
+            <TextBlock Text="Reviews"></TextBlock>
+        </Label>
+
+            <Label Grid.Row="1" Content="*Double click on column to see details about review" FontSize="12" Foreground="White" FontFamily="Century Gothic" VerticalAlignment="Bottom"/>
+        <DataGrid Grid.Row="2" Margin="10,5,10,20"
+                  AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single"
+                  ItemsSource="{Binding TourReviews, UpdateSourceTrigger=PropertyChanged}"
+                  SelectedItem="{Binding SelectedReview, UpdateSourceTrigger=PropertyChanged}"
+                  GridLinesVisibility="None"
+                  IsSynchronizedWithCurrentItem="True"
+                  Background="#506dbb">
+            <DataGrid.Resources>
+                <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Background" Value="#3c528c"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="Height" Value="30"/>
+                </Style>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="Background" Value="#465fa4"/>
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.RowStyle>
+                <Style TargetType="{x:Type DataGridRow}">
+                    <Setter Property="Background" Value="#465fa4"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="FontFamily" Value="Century Gothic"/>
+                    <Setter Property="FontSize" Value="16"/>
+                </Style>
+            </DataGrid.RowStyle>
+
+
+            <DataGrid.InputBindings>
+                <MouseBinding
+                MouseAction="LeftDoubleClick"
+                Command="{Binding SeeDetailsCommand}"
+                CommandParameter="{Binding TourReviews/}"/>
+            </DataGrid.InputBindings>
+            
+            <DataGrid.RowHeaderStyle>
+                <Style TargetType="{x:Type DataGridRowHeader}">
+                    <Setter Property="Height" Value="30"/>
+                    <Setter Property="Width" Value="0"/>
+                </Style>
+            </DataGrid.RowHeaderStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Tour name" Width="1.2*" Binding="{Binding tourName}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Rating" Width="*" Binding="{Binding avgRating}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Appointment" Width="1.2*" Binding="{Binding appointment, StringFormat=g, ConverterCulture=fr-FR}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Guest" Width="*" Binding="{Binding userName}"></DataGridTextColumn>
+
+                <DataGridTemplateColumn Header="Is valid" CanUserResize="False" Width="0.4*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Height="20" Width="20">
+                                <Image.Style>
+                                    <Style TargetType="Image">
+
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding validity}" Value="True">
+                                                <Setter Property="Source" Value="../../Resources/Images/check.png"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding validity}" Value="False">
+                                                <Setter Property="Source" Value="../../Resources/Images/x.png"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Image.Style>
+                            </Image>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+
+    </Grid>
+</Window>

@@ -1,0 +1,129 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Images\add.png" />
+    <None Remove="Resources\Images\add_present.png" />
+    <None Remove="Resources\Images\alert.png" />
+    <None Remove="Resources\Images\ask.png" />
+    <None Remove="Resources\Images\avatar.png" />
+    <None Remove="Resources\Images\check.png" />
+    <None Remove="Resources\Images\burger_menu1.png" />
+    <None Remove="Resources\Images\clockIcon.png" />
+    <None Remove="Resources\Images\delete.png" />
+    <None Remove="Resources\Images\details.png" />
+    <None Remove="Resources\Images\edit.png" />
+    <None Remove="Resources\Images\forumIcon.jpg" />
+    <None Remove="Resources\Images\forum_icon.png" />
+    <None Remove="Resources\Images\home_icon.jpg" />
+    <None Remove="Resources\Images\image.png" />
+    <None Remove="Resources\Images\infoIcon.png" />
+    <None Remove="Resources\Images\invite.png" />
+    <None Remove="Resources\Images\katedralajpg.jpg" />
+    <None Remove="Resources\Images\language.png" />
+    <None Remove="Resources\Images\lightbulb.png" />
+    <None Remove="Resources\Images\location.png" />
+    <None Remove="Resources\Images\logo.jpg" />
+    <None Remove="Resources\Images\next-location.png" />
+    <None Remove="Resources\Images\padlock.ico" />
+    <None Remove="Resources\Images\padlock.png" />
+    <None Remove="Resources\Images\paper-plane.png" />
+    <None Remove="Resources\Images\pause.png" />
+    <None Remove="Resources\Images\pdf.png" />
+    <None Remove="Resources\Images\plane.png" />
+    <None Remove="Resources\Images\plus.ico" />
+    <None Remove="Resources\Images\question.png" />
+    <None Remove="Resources\Images\quitjob.png" />
+    <None Remove="Resources\Images\rating.png" />
+    <None Remove="Resources\Images\request.png" />
+    <None Remove="Resources\Images\return_icon.png" />
+    <None Remove="Resources\Images\reviews.png" />
+    <None Remove="Resources\Images\searchIcon.png" />
+    <None Remove="Resources\Images\setting.png" />
+    <None Remove="Resources\Images\settings.png" />
+    <None Remove="Resources\Images\statistic.png" />
+    <None Remove="Resources\Images\stop.png" />
+    <None Remove="Resources\Images\stophand.png" />
+    <None Remove="Resources\Images\trend.png" />
+    <None Remove="Resources\Images\userIcon.png" />
+    <None Remove="Resources\Images\username.png" />
+    <None Remove="Resources\Images\view.png" />
+    <None Remove="Resources\Images\warning.png" />
+    <None Remove="Resources\Images\weakness.png" />
+    <None Remove="Resources\Images\x.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ceTe.DynamicPDF.CoreSuite.NET" Version="12.4.0" />
+    <PackageReference Include="LiveCharts" Version="0.9.7" />
+    <PackageReference Include="LiveCharts.WinForms" Version="0.9.7.1" />
+    <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
+    <PackageReference Include="ScottPlot.WinForms" Version="4.1.63" />
+    <PackageReference Include="ToastNotifications" Version="2.5.1" />
+    <PackageReference Include="ToastNotifications.Messages" Version="2.5.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Images\add.png" />
+    <Resource Include="Resources\Images\add_present.png" />
+    <Resource Include="Resources\Images\alert.png" />
+    <Resource Include="Resources\Images\ask.png" />
+    <Resource Include="Resources\Images\avatar.png" />
+    <Resource Include="Resources\Images\check.png" />
+    <Resource Include="Resources\Images\burger_menu1.png" />
+    <Resource Include="Resources\Images\clockIcon.png" />
+    <Resource Include="Resources\Images\delete.png" />
+    <Resource Include="Resources\Images\details.png" />
+    <Resource Include="Resources\Images\edit.png" />
+    <Resource Include="Resources\Images\forumIcon.jpg" />
+    <Resource Include="Resources\Images\forum_icon.png" />
+    <Resource Include="Resources\Images\home_icon.jpg" />
+    <Resource Include="Resources\Images\image.png" />
+    <Resource Include="Resources\Images\infoIcon.png" />
+    <Resource Include="Resources\Images\invite.png" />
+    <Resource Include="Resources\Images\katedralajpg.jpg" />
+    <Resource Include="Resources\Images\language.png" />
+    <Resource Include="Resources\Images\lightbulb.png" />
+    <Resource Include="Resources\Images\location.png" />
+    <Resource Include="Resources\Images\logo.jpg" />
+    <Resource Include="Resources\Images\next-location.png" />
+    <Resource Include="Resources\Images\padlock.ico" />
+    <Resource Include="Resources\Images\padlock.png" />
+    <Resource Include="Resources\Images\paper-plane.png" />
+    <Resource Include="Resources\Images\pause.png" />
+    <Resource Include="Resources\Images\pdf.png" />
+    <Resource Include="Resources\Images\plane.png" />
+    <Resource Include="Resources\Images\plus.ico" />
+    <Resource Include="Resources\Images\question.png" />
+    <Resource Include="Resources\Images\quitjob.png" />
+    <Resource Include="Resources\Images\rating.png" />
+    <Resource Include="Resources\Images\request.png" />
+    <Resource Include="Resources\Images\return_icon.png" />
+    <Resource Include="Resources\Images\reviews.png" />
+    <Resource Include="Resources\Images\searchIcon.png" />
+    <Resource Include="Resources\Images\setting.png" />
+    <Resource Include="Resources\Images\settings.png" />
+    <Resource Include="Resources\Images\statistic.png" />
+    <Resource Include="Resources\Images\stop.png" />
+    <Resource Include="Resources\Images\stophand.png" />
+    <Resource Include="Resources\Images\trend.png" />
+    <Resource Include="Resources\Images\userIcon.png" />
+    <Resource Include="Resources\Images\username.png" />
+    <Resource Include="Resources\Images\view.png" />
+    <Resource Include="Resources\Images\warning.png" />
+    <Resource Include="Resources\Images\weakness.png" />
+    <Resource Include="Resources\Images\x.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Command\TourGuideCommand\" />
+    <Folder Include="Resources\PDFReports\" />
+  </ItemGroup>
+
+</Project>
